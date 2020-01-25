@@ -2,7 +2,8 @@
   (:require [com.stuartsierra.component :as component]
             [cljbin.server :as server]
             [cljbin.store :as store]
-            [clojure.tools.logging :refer [error]]))
+            [clojure.tools.logging :refer [error]]
+            [clojure.tools.logging :as log]))
 
 (def ^:redef system
   "Holds our system."
@@ -33,4 +34,4 @@
   "Start system"
   []
   (alter-var-root #'system component/start-system)
-  (println "System started ! Go put trash out there now..."))
+  (log/info "System started ! Go put trash out there now..."))

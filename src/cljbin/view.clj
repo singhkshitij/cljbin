@@ -14,7 +14,7 @@
           [:meta {:charset "UTF-8"}]
           [:script "hljs.initHighlightingOnLoad();"]]
          [:body
-          [:pre [:code (:content paste)]]]))
+          [:pre [:code (str paste)]]]))
 
 (defn render-form
   "Render a simple HTML form page."

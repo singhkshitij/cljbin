@@ -6,13 +6,14 @@
             [ring.util.request :as req]
             [ring.middleware.params :refer [wrap-params]]
             [cljbin.view :as view]
-            [cljbin.store :as store]))
+            [cljbin.store :as store]
+            [clojure.tools.logging :as log]))
 
 (defn handle-post
   "This handles creating a new paste, based on the POST data."
   [store request]
   (let [content (get (:form-params request) "content")
-        uuid (store/add-new-paste store content)]
+        uuid (store/add-new-paste content)]
     (res/redirect (str "/" uuid) :see-other)))
 
 (defn handle-index
@@ -31,8 +32,10 @@
 
 (defn paste-handler
   [store request]
-  (let [paste (store/get-paste-by-uuid store (:uuid (:route-params request)))]
+  (let [paste (store/get-paste-by-uuid (:uuid (:route-params request)))]
     (res/response (view/render-paste paste))))
+
+(def port 8080)
 
 (defn handler
   "Get the handler function for our routes."
@@ -48,8 +51,8 @@
 (defrecord HttpServer [server]
   component/Lifecycle
   (start [this]
-    (assoc this :server (http/start-server (app (:store this)) {:port 8080})))
-
+    (log/info "Starting service on port " port)
+    (assoc this :server (http/start-server (app (:store this)) {:port port})))
   (stop [this]
     (dissoc this :server)))
 
