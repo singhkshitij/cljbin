@@ -8,7 +8,8 @@
                  [aleph "0.4.6"]
                  [hiccup "1.0.5"]
                  [bidi "2.1.3"]
-                 [com.taoensso/carmine "2.19.1"]]
+                 [com.taoensso/carmine "2.19.1"]
+                 [nano-id "0.10.0"]]
   :main ^:skip-aot cljbin.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

@@ -1,12 +1,13 @@
 (ns cljbin.store
   (:require [com.stuartsierra.component :as component]
             [taoensso.carmine :as car :refer (wcar)]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [nano-id.core :refer [nano-id]]))
 
 (defn add-new-paste
   "Insert a new paste in the database, then return its UUID."
   [content]
-  (let [uuid (.toString (java.util.UUID/randomUUID))]
+  (let [uuid (nano-id 10)]
     (wcar * (car/set uuid content))
     uuid))
 

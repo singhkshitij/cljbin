@@ -51,7 +51,7 @@
 (defrecord HttpServer [server]
   component/Lifecycle
   (start [this]
-    (log/info "Starting service on port " port)
+    (log/info "Starting service on port" port)
     (assoc this :server (http/start-server (app (:store this)) {:port port})))
   (stop [this]
     (dissoc this :server)))
