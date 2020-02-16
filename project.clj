@@ -12,7 +12,6 @@
                  [nano-id "0.10.0"]]
   :plugins [[lein-heroku "0.5.3"]]
   :main cljbin.core
-  :aot [cljbin.core]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}}
+  :profiles {:uberjar {:aot [cljbin.core]}}
   :heroku {:app-name "damp-hollows-89882"})
