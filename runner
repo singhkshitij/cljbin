@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo /usr/bin/java -jar ./target/uberjar/cljbin-0.1.0.jar
