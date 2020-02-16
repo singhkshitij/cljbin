@@ -4,13 +4,20 @@ Description=My Webapp Java REST Service
 [Service]
 User=root
 
-#path to executable.
 #executable is a bash script which calls jar file
-ExecStart=/root/cljbin/runner
+WorkingDirectory=/root/cljbin/
+ExecStart=/bin/bash runner
 SuccessExitStatus=143
+Type=simple
 TimeoutStopSec=10
 Restart=on-failure
 RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
+
+
+#commands to run if req
+#sudo chown -R root:root /root/cljbin/
+#sudo systemctl daemon-reload
+#sudo systemctl start cljbin.service
