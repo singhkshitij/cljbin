@@ -2,7 +2,7 @@
 Description=My Webapp Java REST Service
 
 [Service]
-User=ubuntu
+User=root
 
 #path to executable.
 #executable is a bash script which calls jar file
